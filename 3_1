@@ -1,0 +1,39 @@
+#include <iostream>
+#include <iomanip>
+#include <cmath>
+using namespace std;
+
+int main() {
+    double start = -4.0, end = 6.0, dx = 0.1;
+
+    cout << fixed << setprecision(2);
+    cout << "   x\t|\ty" << endl;
+    cout << "--------------------" << endl;
+
+    for (double x = start; x <= end; x += dx) {
+        double y;
+
+        // прямая от x = -4 до x = 0 
+        if (x < 0) {
+            y = -0.5 * x;
+        }
+        // 2) четвертая четверть окружности 
+        else if (x <= 2) {
+            double under_sqrt = 4 - (x - 0) * (x - 0);
+            y = (under_sqrt >= 0) ? 2 - sqrt(under_sqrt) : NAN;
+        }
+        // 3) первая четверть окружности
+        else if (x <= 4) {
+            double under_sqrt = 4 - (x - 2) * (x - 2);
+            y = (under_sqrt >= 0) ? 0 + sqrt(under_sqrt) : NAN;
+        }
+        // 4) прямая от x = 4 до x = 6 
+        else {
+            y = -0.5 * x + 2;
+        }
+
+        cout << setw(5) << x << "\t|\t" << y << endl;
+    }
+
+    return 0;
+}
